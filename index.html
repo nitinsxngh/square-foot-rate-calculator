@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </head>
+<style type="text/css">
+  
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+}
+
+    /* Toggle Switch CSS */
+    .toggle-switch {
+      width: 60px;
+      height: 30px;
+      background-color: #ccc;
+      border-radius: 15px;
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+    .toggle-switch-child {
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s;
+    }
+    
+    input[type="checkbox"] {
+      display: none;
+    }
+    
+    input[type="checkbox"]:checked + .toggle-switch-child {
+      transform: translateX(30px);
+    }
+
+
+/* Define the animation */
+@keyframes vibrate {
+  0% { transform: translate(-5px, -5px); }
+  25% { transform: translate(5px, -5px); }
+  50% { transform: translate(5px, 5px); }
+  75% { transform: translate(-5px, 5px); }
+  100% { transform: translate(-5px, -5px); }
+}
+
+/* Apply the animation to .pot-icon */
+.cloud-icon {
+  animation: vibrate 2s linear infinite;
+}
+
+
+/* Define the animation */
+@keyframes vibrate {
+  0% { transform: translate(-1px, -1px); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(1px, 1px); }
+  75% { transform: translate(-1px, 1px); }
+  100% { transform: translate(-1px, -1px); }
+}
+
+/* Apply the animation to .pot-icon */
+.pot-icon {
+  animation: vibrate 1s linear infinite;
+}
+
+.container-icon {
+  position: relative;
+}
+.container-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+}
+
+.container {
+    transition: background-image 0.5s ease; /* Add a transition for the background image */
+}
+
+</style>
+
+  <body>
+    <audio id="audio" src="switch.mp3"></audio>
+
+    <div class="estimated-calculator">
+      <section class="header-wrapper" style="position: fixed;">
+        <div class="header">
+          <div class="header1"></div>
+          <h2 class="housebanao">Housebanao</h2>
+          <div class="button-more">
+            <button class="button">
+              <img
+                class="more-horizontal-icon"
+                alt=""
+                src="./public/morehorizontal.svg"
+              />
+            </button>
+            <button class="button1">
+              <div class="primary">Share</div>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="container" style="margin-top: 120px;">
+        <img class="container-icon" alt="" src="./public/container@2x.png" />
+
+        <div class="total-costing-label-parent">
+          <div class="total-costing-label">
+            <div class="area-sqft-label">
+              <div class="bar-slider">
+                <div class="input-1">
+                  <input class="length" placeholder="Length" type="text" autofocus />
+                </div>
+                <div class="input-2">
+                  <input class="breath" placeholder="Breath" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="classic-box-premium-box-royal-parent">
+              <div class="classic-box-premium-box-royal">
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <div class="toggle-switch-child"></div>
+                  </label>
+              </div>
+              <div class="total-costing">Total Costing:&nbsp;<span class="estimated-amount"></span></div>
+            </div>
+          </div>
+          <input class="frame-child" placeholder="Area Sq/ft:" type="text" />
+        </div>
+        <div class="bar-parent">
+          <div class="bar">
+           <div class="slidecontainer">
+           <input type="range" min="0" max="11" value="0" class="slider" id="myRange">
+            <p style="font-weight: bold; color: #6c6c6c;">Floor: G+<span id="demo"></span></p>
+           </div>
+          </div>
+          <div class="set-price-parent">
+            <div class="set-price" style="color: #6c6c6c;">Set Price</div>
+            <div class="input">
+              <input class="price" placeholder="Price" value="999" type="text" />
+            </div>
+          </div>
+          <div class="frame-wrapper">
+            <div class="select-plan-parent">
+              <div class="select-plan" style="color: #6c6c6c;">Select Plan</div>
+              <div class="rectangle-parent">
+                <div class="frame-item"></div>
+                <div class="box-1-wrapper">
+                  <div class="box-1">
+                    <div class="rectangle"></div>
+                    <div class="select-plan1">Select Plan</div>
+                  </div>
+                </div>
+                <div class="box-2-wrapper">
+                  <button class="box-2" price="999">
+                    <div class="box-2-child"></div>
+                    <div class="structure">Structure</div>
+                  </button>
+                </div>
+                <div class="box-classic-premium-royal-boxe-wrapper">
+                  <div class="box-classic-premium-royal-boxe">
+                    <button class="box-3" price="1700">
+                      <div class="box-3-child"></div>
+                      <div class="classic">Classic</div>
+                    </button>
+                    <button class="box-4" price="2100">
+                      <div class="box-4-child"></div>
+                      <div class="premium">Premium</div>
+                    </button>
+                    <button class="box-5" price="2500">
+                      <div class="box-5-child"></div>
+                      <div class="royal">Royal</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-calculate">
+          <button class="estimated-btn">
+            <div class="calculate-estimated-amount">
+              Calculate Estimated Amount
+            </div>
+          </button>
+        </div>
+        <div class="chair-parent">
+          <img
+            class="chair-icon"
+            loading="lazy"
+            alt=""
+            src="./public/chair@2x.png"
+          />
+
+          <img class="pot-icon" alt="" src="./public/pot@2x.png" />
+        </div>
+        <img id="off" class="icon" loading="lazy" alt="" src="./public/12-1@2x.png" />
+        <img id="on" class="icon" loading="lazy" alt="" src="./public/on.png" />
+      </section>
+      <img
+        class="cloud-icon"
+        loading="lazy"
+        alt=""
+        src="./public/cloud@2x.png"
+      />
+    </div>
+  </body>
+</html>
+
+<script>
+
+
+// Audio element
+var audio = document.getElementById("audio");
+
+// Function to play audio
+function playAudio() {
+  audio.play();
+}
+
+// Toggle switch click event
+document.querySelector('.toggle-switch').addEventListener('click', function() {
+  playAudio();
+});
+
+
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+
+<script>
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }
+
+  var lightOn = document.getElementById("on");
+  var lightOff = document.getElementById("off");
+
+  var checkbox = document.querySelector('input[type="checkbox"]');
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      lightOn.style.display = "block";
+      lightOff.style.display = "none";
+    } else {
+      lightOn.style.display = "none";
+      lightOff.style.display = "block";
+    }
+  });
+
+  // Initial state
+  if (checkbox.checked) {
+    lightOn.style.display = "block";
+    lightOff.style.display = "none";
+  } else {
+    lightOn.style.display = "none";
+    lightOff.style.display = "block";
+  }
+
+
+
+var checkbox = document.querySelector('input[type="checkbox"]');
+var container = document.querySelector('.container');
+
+checkbox.addEventListener('change', function() {
+  if (this.checked) {
+    // Change background image URL when checkbox is checked
+    container.style.backgroundImage = 'url(./public/18.png)';
+  } else {
+    // Change back to the original background image URL when checkbox is unchecked
+    container.style.backgroundImage = 'url(./public/17.png)';
+  }
+});
+
+
+</script>
+
+<script>
+  // Function to calculate area in square feet
+  function calculateArea() {
+    var lengthInput = document.querySelector('.length');
+    var breadthInput = document.querySelector('.breath');
+    var areaOutput = document.querySelector('.frame-child');
+
+    var length = parseFloat(lengthInput.value);
+    var breadth = parseFloat(breadthInput.value);
+
+    // Check if inputs are valid numbers
+    if (!isNaN(length) && !isNaN(breadth)) {
+      var area = length * breadth;
+      areaOutput.value = area.toFixed(2) + ' sq/ft'; // Display area with 2 decimal places
+    } else {
+      areaOutput.value = ''; // Clear output if inputs are not valid numbers
+    }
+  }
+
+  // Event listeners for input fields
+  document.querySelector('.length').addEventListener('input', calculateArea);
+  document.querySelector('.breath').addEventListener('input', calculateArea);
+</script>
+
+<script type="text/javascript">
+  
+
+// Event listener for the box buttons
+document.querySelectorAll('.box-2, .box-3, .box-4, .box-5').forEach(function(box) {
+  box.addEventListener('click', function() {
+    var price = parseFloat(this.getAttribute('price'));
+    document.querySelector('.price').value = price;
+    calculateEstimatedAmount(); // Update the estimated amount
+  });
+});
+
+
+function calculateEstimatedAmount() {
+  var areaInput = document.querySelector('.frame-child');
+  var priceInput = document.querySelector('.price');
+  var floorsSlider = document.getElementById("myRange");
+  var estimatedAmountOutput = document.querySelector('.estimated-amount');
+
+  var area = parseFloat(areaInput.value);
+  var price = parseFloat(priceInput.value);
+  var floors = parseInt(floorsSlider.value) + 1; // Adjusted to start from 1
+
+  // Use default price value if price is empty or not a number
+  if (isNaN(price) || !price) {
+    price = 999;
+  }
+
+  // Check if inputs are valid numbers
+  if (!isNaN(area) && !isNaN(price) && !isNaN(floors)) {
+    var estimatedAmount = area * price * floors;
+    estimatedAmountOutput.innerHTML = '' + estimatedAmount.toFixed(2);
+  } else {
+    estimatedAmountOutput.innerHTML = ''; // Clear output if inputs are not valid numbers
+  }
+}
+
+// Event listener for the slider input
+document.getElementById("myRange").addEventListener('input', function() {
+  var sliderValue = document.getElementById("myRange").value;
+  document.getElementById("demo").innerText = sliderValue;
+  calculateEstimatedAmount();
+});
+
+</script>
+
+<script>
+  // Function to handle Enter key press
+  function handleEnterKey(event) {
+    if (event.keyCode === 13) {
+      var nextInput = event.target.parentElement.parentElement.nextElementSibling.querySelector('input');
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
+  }
+
+  // Event listeners for input fields
+  document.querySelectorAll('input').forEach(function(input) {
+    input.addEventListener('keydown', handleEnterKey);
+  });
+</script>
+
